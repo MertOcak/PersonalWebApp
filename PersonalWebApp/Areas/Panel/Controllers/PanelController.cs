@@ -48,6 +48,7 @@ namespace PersonalWebApp.Areas.Panel.Controllers
             //applicationUser.PasswordHash = hasedPassword;
 
             //_context.SaveChanges();
+
             if (_signInManager.IsSignedIn(User))
             {
                 //return View();

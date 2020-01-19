@@ -22,7 +22,7 @@ namespace PersonalWebApp.Areas.Panel.Data
             return category;
         }
 
-        public Category Delete(int id)
+        public Category Delete(Guid id)
         {
             Category category = context.Categories.Find(id);
             if(category != null)
@@ -38,7 +38,7 @@ namespace PersonalWebApp.Areas.Panel.Data
             return context.Categories;
         }
 
-        public Category GetCategory(int id)
+        public Category GetCategory(Guid id)
         {
             return context.Categories.Find(id);
         }

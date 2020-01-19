@@ -8,10 +8,10 @@ namespace PersonalWebApp.Data.ProjectData
 {
     public interface IProjectRepository
     {
-        Project GetProject(/*string sefUrl*/int id);
+        Project GetProject(/*string sefUrl*/Guid id);
         IEnumerable<Project> GetAllProjects();
         Project Add(Project project);
         Project Update(Project projectChanges);
-        Project Delete(int id);
+        Project Delete(Guid id);
     }
 }

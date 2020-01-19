@@ -10,8 +10,8 @@ using PersonalWebApp.Models;
 namespace PersonalWebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200117084241_AddingPhotoPathToProjectModel")]
-    partial class AddingPhotoPathToProjectModel
+    [Migration("20200119054314_DeleteCategoryIdFromProjectModel")]
+    partial class DeleteCategoryIdFromProjectModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -184,14 +184,16 @@ namespace PersonalWebApp.Migrations
 
             modelBuilder.Entity("PersonalWebApp.Areas.Panel.Models.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnName("CategoryId");
 
                     b.Property<string>("CategoryName")
                         .IsRequired();
 
                     b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsChecked");
 
                     b.HasKey("Id");
 
@@ -200,11 +202,9 @@ namespace PersonalWebApp.Migrations
 
             modelBuilder.Entity("PersonalWebApp.Models.Project", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId");
+                        .HasColumnName("ProjectId");
 
                     b.Property<string>("Description")
                         .IsRequired();
@@ -223,6 +223,19 @@ namespace PersonalWebApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("PersonalWebApp.Models.ProjectCategory", b =>
+                {
+                    b.Property<Guid>("ProjectId");
+
+                    b.Property<Guid>("CategoryId");
+
+                    b.HasKey("ProjectId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("ProjectCategory");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -267,6 +280,19 @@ namespace PersonalWebApp.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PersonalWebApp.Models.ProjectCategory", b =>
+                {
+                    b.HasOne("PersonalWebApp.Areas.Panel.Models.Category", "Category")
+                        .WithMany("ProjectCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PersonalWebApp.Models.Project", "Project")
+                        .WithMany("ProjectCategories")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

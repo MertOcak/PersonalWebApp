@@ -1,4 +1,5 @@
 ﻿//using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 //using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace PersonalWebApp.Data.ProjectData
             _context = context;
         }
 
-        public Project GetProject(int id/*string sefUrl*/)
+        public Project GetProject(Guid id/*string sefUrl*/)
         {
             //return _context.Projects.FirstOrDefault(p => p.SefUrl == sefUrl);
             return _context.Projects.Find(id);
@@ -41,7 +42,7 @@ namespace PersonalWebApp.Data.ProjectData
             return projectChanges;
         }
 
-        public Project Delete(int id)
+        public Project Delete(Guid id)
         {
             Project project = _context.Projects.Find(id);
             if (project != null)

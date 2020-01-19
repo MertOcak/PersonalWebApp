@@ -8,10 +8,10 @@ namespace PersonalWebApp.Areas.Panel.Data
 {
     public interface ICategoryRepository
     {
-        Category GetCategory(int Id);
+        Category GetCategory(Guid Id);
         IEnumerable<Category> GetAllCategories();
         Category Add(Category category);
         Category Update(Category categoryChanges);
-        Category Delete(int id);
+        Category Delete(Guid id);
     }
 }

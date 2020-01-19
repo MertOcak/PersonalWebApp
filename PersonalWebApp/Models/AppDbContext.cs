@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PersonalWebApp.Areas.Panel.Models;
+using PersonalWebApp.Models.Configurations;
 
 namespace PersonalWebApp.Models
 {
@@ -17,6 +18,15 @@ namespace PersonalWebApp.Models
         }
 
         public DbSet<Project> Projects { get; set; }
+
         public DbSet<Category> Categories { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new ProjectCategoryConfiguration());
+        }
+
+
     }
 }

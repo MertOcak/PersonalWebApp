@@ -50,13 +50,13 @@ namespace PersonalWebApp.Areas.Panel.Controllers
             }
         }
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(Guid id)
         {
             Category category = categoryRepository.GetCategory(id);
             return View("CategoryEdit", category);
         }
         [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             categoryRepository.Delete(id);
             TempData["Success"] = "Operation Successful!";

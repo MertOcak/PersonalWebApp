@@ -63,7 +63,7 @@ namespace PersonalWebApp.Areas.Panel.Controllers
             }
         }
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(Guid id)
         {
             ProjectEditViewModel data = new ProjectEditViewModel();
             data.Categories = categoryRepository.GetAllCategories();
@@ -71,7 +71,7 @@ namespace PersonalWebApp.Areas.Panel.Controllers
             return View("ProjectEdit", data);
         }
         [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             projectRepository.Delete(id);
             TempData["Success"] = "Operation Successful!";

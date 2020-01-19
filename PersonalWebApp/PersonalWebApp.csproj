@@ -31,6 +31,34 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200117011536_CategoryAddedToPprojectModel.cs" />
     <Compile Remove="Migrations\20200117011536_CategoryAddedToPprojectModel.Designer.cs" />
+    <Compile Remove="Migrations\20200119041101_ManyToManyRelationshipForProjectCategory.cs" />
+    <Compile Remove="Migrations\20200119041101_ManyToManyRelationshipForProjectCategory.Designer.cs" />
+    <Compile Remove="Migrations\20200119042148_ManyToManyRelationshipForProjectCategory.cs" />
+    <Compile Remove="Migrations\20200119042148_ManyToManyRelationshipForProjectCategory.Designer.cs" />
+    <Compile Remove="Migrations\20200119042601_ManyToManyRelationshipForProjectCategory.cs" />
+    <Compile Remove="Migrations\20200119042601_ManyToManyRelationshipForProjectCategory.Designer.cs" />
+    <Compile Remove="Migrations\20200119043609_ChangeProjectAndCategoryModelsIdToGuid.cs" />
+    <Compile Remove="Migrations\20200119043609_ChangeProjectAndCategoryModelsIdToGuid.Designer.cs" />
+    <Compile Remove="Migrations\20200119043710_ChangeProjectAndCategoryModelsIdToGuidStep1.cs" />
+    <Compile Remove="Migrations\20200119043710_ChangeProjectAndCategoryModelsIdToGuidStep1.Designer.cs" />
+    <Compile Remove="Migrations\20200119043803_ChangeProjectAndCategoryModelsIdToGuidStep1.cs" />
+    <Compile Remove="Migrations\20200119043803_ChangeProjectAndCategoryModelsIdToGuidStep1.Designer.cs" />
+    <Compile Remove="Migrations\20200119043907_ChangeProjectAndCategoryModelsIdToGuidStep1.cs" />
+    <Compile Remove="Migrations\20200119043907_ChangeProjectAndCategoryModelsIdToGuidStep1.Designer.cs" />
+    <Compile Remove="Migrations\20200119044014_ChangeProjectAndCategoryModelsIdToGuidStep2.cs" />
+    <Compile Remove="Migrations\20200119044014_ChangeProjectAndCategoryModelsIdToGuidStep2.Designer.cs" />
+    <Compile Remove="Migrations\20200119044108_ChangeProjectAndCategoryModelsIdToGuidStep2.cs" />
+    <Compile Remove="Migrations\20200119044108_ChangeProjectAndCategoryModelsIdToGuidStep2.Designer.cs" />
+    <Compile Remove="Migrations\20200119044405_ChangeProjectAndCategoryModelsIdToGuidStep1.cs" />
+    <Compile Remove="Migrations\20200119044405_ChangeProjectAndCategoryModelsIdToGuidStep1.Designer.cs" />
+    <Compile Remove="Migrations\20200119051330_ChangeProjectAndCategoryModelsIdToGuidStep1.cs" />
+    <Compile Remove="Migrations\20200119051330_ChangeProjectAndCategoryModelsIdToGuidStep1.Designer.cs" />
+    <Compile Remove="Migrations\20200119051538_ChangeProjectAndCategoryModelsIdToGuidStep1.cs" />
+    <Compile Remove="Migrations\20200119051538_ChangeProjectAndCategoryModelsIdToGuidStep1.Designer.cs" />
+    <Compile Remove="Migrations\20200119051651_ChangeProjectAndCategoryModelsIdToGuidStep1.cs" />
+    <Compile Remove="Migrations\20200119051651_ChangeProjectAndCategoryModelsIdToGuidStep1.Designer.cs" />
+    <Compile Remove="Migrations\20200119052024_ChangeProjectAndCategoryModelsIdToGuidStep1.cs" />
+    <Compile Remove="Migrations\20200119052024_ChangeProjectAndCategoryModelsIdToGuidStep1.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
