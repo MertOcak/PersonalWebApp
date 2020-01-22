@@ -71,7 +71,6 @@
   <ItemGroup>
     <Folder Include="Areas\Panel\wwwroot\" />
     <Folder Include="Areas\Panel\Utilities\" />
-    <Folder Include="wwwroot\userdata\projects\" />
   </ItemGroup>
 
 </Project>

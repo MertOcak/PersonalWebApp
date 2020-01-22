@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace PersonalWebApp.Models.Configurations
 {
-    public class ProjectCategoryConfiguration : IEntityTypeConfiguration<ProjectCategory>
+    public class ProjectImageConfiguration : IEntityTypeConfiguration<ProjectImages>
     {
-        public void Configure(EntityTypeBuilder<ProjectCategory> builder)
+        public void Configure(EntityTypeBuilder<ProjectImages> builder)
         {
-            builder.HasKey(p => new { p.ProjectId, p.CategoryId });
+            builder.HasKey(p => new { p.ProjectId, p.ImageId });
 
             builder.HasOne(pp => pp.Project)
-                .WithMany(p => p.ProjectCategories)
+                .WithMany(p => p.ProjectImages)
                 .HasForeignKey(pp => pp.ProjectId);
 
-            builder.HasOne(pp => pp.Category)
-                .WithMany(p => p.ProjectCategories)
-                .HasForeignKey(pp => pp.CategoryId);
+            builder.HasOne(pp => pp.Image)
+                .WithMany(p => p.ProjectImages)
+                .HasForeignKey(pp => pp.ImageId);
         }
     }
 }

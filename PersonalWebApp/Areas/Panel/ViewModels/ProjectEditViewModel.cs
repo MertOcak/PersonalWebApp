@@ -19,5 +19,7 @@ namespace PersonalWebApp.Areas.Panel.ViewModels
         public IEnumerable<Category> Categories { get; set; }
         public List<IFormFile> Images { get; set; }
 
+        public List<string> ImagePath { get; set; }
+
     }
 }

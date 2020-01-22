@@ -11,7 +11,7 @@ namespace PersonalWebApp.Models
     {
         [Column("ProjectId")]
         public Guid Id { get; set; }
-        [Display(Name ="Project Title", Description = "Please enter project title here")]
+        [Display(Name = "Project Title", Description = "Please enter project title here")]
         [Required]
         public string Title { get; set; }
         [Required]
@@ -23,6 +23,8 @@ namespace PersonalWebApp.Models
 
         // Relationships Many to Many for Categories
         public ICollection<ProjectCategory> ProjectCategories { get; set; }
+
+        public ICollection<ProjectImages> ProjectImages { get; set; }
 
     }
 }

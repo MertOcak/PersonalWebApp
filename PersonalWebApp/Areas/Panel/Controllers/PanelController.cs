@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PersonalWebApp.Areas.Admin.ViewModels;
+using PersonalWebApp.Areas.Panel.Models;
 using PersonalWebApp.Models;
 
 namespace PersonalWebApp.Areas.Panel.Controllers
@@ -48,6 +49,24 @@ namespace PersonalWebApp.Areas.Panel.Controllers
             //applicationUser.PasswordHash = hasedPassword;
 
             //_context.SaveChanges();
+
+            //var project = new Project
+            //{
+            //    Title = "Test Project",
+            //    Description = "Description"
+
+            //};
+            //var category = new Category { CategoryName = "Future Technologies" };
+            //project.ProjectCategories = new List<ProjectCategory>{
+            //    new ProjectCategory {
+            //            Project = project,
+            //            Category = category,
+            //           }
+            //    };
+
+            //_context.Projects.Add(project);
+            //_context.SaveChanges();
+
 
             if (_signInManager.IsSignedIn(User))
             {

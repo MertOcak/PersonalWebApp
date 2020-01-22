@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 //using System.Threading.Tasks;
 using PersonalWebApp.Models;
 
@@ -36,9 +37,17 @@ namespace PersonalWebApp.Data.ProjectData
 
         public Project Update(Project projectChanges)
         {
-            var project = _context.Projects.Attach(projectChanges);
-            project.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            _context.SaveChanges();
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+            optionsBuilder.UseSqlServer(("Server=(localdb)\\MSSQLLocalDB;Database=PersonalWebAppDB;Trusted_Connection=True;MultipleActiveResultSets=true"));
+
+            using (var a = new AppDbContext(optionsBuilder.Options))
+            {
+                var project = a.Projects.Attach(projectChanges);
+                project.State = EntityState.Modified;
+                a.SaveChanges();
+            }
+
+            
             return projectChanges;
         }
 

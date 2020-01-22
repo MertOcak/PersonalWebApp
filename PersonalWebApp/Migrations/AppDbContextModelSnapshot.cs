@@ -198,6 +198,18 @@ namespace PersonalWebApp.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("PersonalWebApp.Models.Image", b =>
+                {
+                    b.Property<Guid>("ImageId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ImagePath");
+
+                    b.HasKey("ImageId");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("PersonalWebApp.Models.Project", b =>
                 {
                     b.Property<Guid>("Id")
@@ -234,6 +246,19 @@ namespace PersonalWebApp.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("ProjectCategory");
+                });
+
+            modelBuilder.Entity("PersonalWebApp.Models.ProjectImages", b =>
+                {
+                    b.Property<Guid>("ProjectId");
+
+                    b.Property<Guid>("ImageId");
+
+                    b.HasKey("ProjectId", "ImageId");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("ProjectImages");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -290,6 +315,19 @@ namespace PersonalWebApp.Migrations
 
                     b.HasOne("PersonalWebApp.Models.Project", "Project")
                         .WithMany("ProjectCategories")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PersonalWebApp.Models.ProjectImages", b =>
+                {
+                    b.HasOne("PersonalWebApp.Models.Image", "Image")
+                        .WithMany("ProjectImages")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PersonalWebApp.Models.Project", "Project")
+                        .WithMany("ProjectImages")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

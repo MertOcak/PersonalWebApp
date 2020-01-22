@@ -31,7 +31,10 @@ namespace PersonalWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<AppDbContext>(options =>
-                options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
+            {
+                options.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
+                options.EnableSensitiveDataLogging();
+            });
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 10;

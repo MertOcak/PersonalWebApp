@@ -67,7 +67,7 @@
                                     @foreach (var category in Model.Categories)
                                     {
                                         <label class="m-checkbox">
-                                            <input name="@category.Id"> @category.CategoryName
+                                            <input @(category.IsChecked == true ? "checked" : "") name="categoryList[]" type="checkbox" value="@category.Id">@category.CategoryName
                                             <span></span>
                                         </label>
                                     }
