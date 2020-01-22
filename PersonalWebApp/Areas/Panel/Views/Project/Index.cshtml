@@ -100,7 +100,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var project in Model.Projects.OrderByDescending(m => m.Id))
+                                    @foreach (var project in Model.Projects.OrderByDescending(m => m.UpdatedAt))
                                     {
                                         <tr role="row">
                                             <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="width: 30px;">

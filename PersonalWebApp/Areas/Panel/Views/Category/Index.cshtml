@@ -102,7 +102,7 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach (var category in Model.OrderByDescending(m => m.Id))
+                                    @foreach (var category in Model.OrderByDescending(m => m.UpdatedAt))
                                     {
                                         <tr role="row">
                                             <th class="sorting" tabindex="0" aria-controls="m_table_1" rowspan="1" colspan="1" style="width: 118.256px;">@category.CategoryName</th>

@@ -35,6 +35,7 @@ namespace PersonalWebApp
                 options.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
                 options.EnableSensitiveDataLogging();
             });
+
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 10;

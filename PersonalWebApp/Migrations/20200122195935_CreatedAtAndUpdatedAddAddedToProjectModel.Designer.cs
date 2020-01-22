@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonalWebApp.Models;
 
 namespace PersonalWebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200122195935_CreatedAtAndUpdatedAddAddedToProjectModel")]
+    partial class CreatedAtAndUpdatedAddAddedToProjectModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,13 +191,9 @@ namespace PersonalWebApp.Migrations
                     b.Property<string>("CategoryName")
                         .IsRequired();
 
-                    b.Property<DateTime>("CreatedAt");
-
                     b.Property<bool>("IsActive");
 
                     b.Property<bool>("IsChecked");
-
-                    b.Property<DateTime>("UpdatedAt");
 
                     b.HasKey("Id");
 

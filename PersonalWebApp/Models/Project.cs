@@ -20,6 +20,8 @@ namespace PersonalWebApp.Models
         public string PhotoPath { get; set; }
         public string ProjectUrl { get; set; }
         public string SefUrl { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
         // Relationships Many to Many for Categories
         public ICollection<ProjectCategory> ProjectCategories { get; set; }

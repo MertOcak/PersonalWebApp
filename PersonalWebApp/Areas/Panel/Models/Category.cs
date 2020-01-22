@@ -16,6 +16,8 @@ namespace PersonalWebApp.Areas.Panel.Models
         public string CategoryName { get; set; }
         public bool IsChecked { get; set; }
         public bool IsActive { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
         // Relationships Many to Many for Categories
         public ICollection<ProjectCategory> ProjectCategories { get; set; }

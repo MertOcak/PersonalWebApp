@@ -44,17 +44,19 @@
                             <input asp-for="Project.Title" class="form-control m-input">
                             <span class="m-form__help text-danger" asp-validation-for="Project.Title"></span>
                         </div>
-                        <div class="d-block">
-                            <label asp-for="Images" class="d-block"></label>
-                            @if (Model.ImagePath != null)
-                            {
-                                foreach (var image in Model.ImagePath)
+                        @if (Model.ImagePath.Any())
+                        {
+                            <div class="d-block">
+                                <label asp-for="Images" class="d-block"></label>
+
+                                @foreach (var image in Model.ImagePath)
                                 {
 
-                                    <img style="max-height:100px" src="~/userdata/projects/@image" class="img-fluid" />
+                                <img style="max-height:100px" src="~/userdata/projects/@image" class="img-fluid" />
                                 }
-                            }
-                        </div>
+
+                            </div>
+                        }
                         <div class="form-group m-form__group">
                             <label asp-for="Images"></label>
                             <div></div>
@@ -71,6 +73,7 @@
                         <div class="m-form__group form-group">
                             <label>Categories</label>
                             <div class="m-checkbox-list">
+
                                 @if (Model.Categories.Any())
                                 {
                                     @foreach (var category in Model.Categories)
@@ -89,6 +92,7 @@
                             </div>
                         </div>
                     </div>
+
                     @*<div class="m-portlet__foot m-portlet__foot--fit">
                             <div class="m-form__actions m-form__actions--solid m-form__actions--right">
                                 <button type="reset" class="btn btn-primary">Submit</button>

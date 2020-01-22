@@ -13,6 +13,8 @@ namespace PersonalWebApp.Areas.Panel.ViewModels
         public ProjectEditViewModel()
         {
             Categories = new List<Category>();
+            Images = new List<IFormFile>();
+            ImagePath = new List<string>();
         }
 
         public Project Project { get; set; }

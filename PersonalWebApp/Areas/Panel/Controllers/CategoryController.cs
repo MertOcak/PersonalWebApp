@@ -40,6 +40,8 @@ namespace PersonalWebApp.Areas.Panel.Controllers
         {
             if (ModelState.IsValid)
             {
+                category.CreatedAt = DateTime.Now;
+                category.UpdatedAt = DateTime.Now;
                 categoryRepository.Add(category);
                 TempData["Success"] = "Operation Successful!";
                 return RedirectToAction("index");
@@ -67,6 +69,8 @@ namespace PersonalWebApp.Areas.Panel.Controllers
         {
             if (ModelState.IsValid)
             {
+                category.CreatedAt = DateTime.Now;
+                category.UpdatedAt = DateTime.Now;
                 categoryRepository.Update(category);
                 TempData["Success"] = "Operation Successful!";
                 return RedirectToAction("index");

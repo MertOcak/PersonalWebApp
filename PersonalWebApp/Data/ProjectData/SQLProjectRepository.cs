@@ -11,10 +11,12 @@ namespace PersonalWebApp.Data.ProjectData
     public class SqlProjectRepository : IProjectRepository
     {
         private readonly AppDbContext _context;
+        private readonly DbContextOptions<AppDbContext> _contextOptions;
 
-        public SqlProjectRepository(AppDbContext context)
+        public SqlProjectRepository(AppDbContext context, DbContextOptions<AppDbContext> contextOptions)
         {
             _context = context;
+            this._contextOptions = contextOptions;
         }
 
         public Project GetProject(Guid id/*string sefUrl*/)
@@ -37,17 +39,15 @@ namespace PersonalWebApp.Data.ProjectData
 
         public Project Update(Project projectChanges)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseSqlServer(("Server=(localdb)\\MSSQLLocalDB;Database=PersonalWebAppDB;Trusted_Connection=True;MultipleActiveResultSets=true"));
-
-            using (var a = new AppDbContext(optionsBuilder.Options))
+        
+            using (var a = new AppDbContext(_contextOptions))
             {
                 var project = a.Projects.Attach(projectChanges);
                 project.State = EntityState.Modified;
                 a.SaveChanges();
             }
 
-            
+ 
             return projectChanges;
         }
 

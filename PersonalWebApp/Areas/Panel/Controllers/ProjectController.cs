@@ -21,13 +21,15 @@ namespace PersonalWebApp.Areas.Panel.Controllers
     public class ProjectController : Controller
     {
         private readonly AppDbContext context;
+        private readonly DbContextOptions<AppDbContext> contextOptions;
         private readonly ICategoryRepository categoryRepository;
         private readonly IProjectRepository projectRepository;
         private readonly IHostingEnvironment hostingEnvironment;
 
-        public ProjectController(AppDbContext context, ICategoryRepository categoryRepository, IProjectRepository projectRepository, IHostingEnvironment hostingEnvironment)
+        public ProjectController(AppDbContext context, DbContextOptions<AppDbContext> contextOptions, ICategoryRepository categoryRepository, IProjectRepository projectRepository, IHostingEnvironment hostingEnvironment)
         {
             this.context = context;
+            this.contextOptions = contextOptions;
             this.categoryRepository = categoryRepository;
             this.projectRepository = projectRepository;
             this.hostingEnvironment = hostingEnvironment;
@@ -52,12 +54,22 @@ namespace PersonalWebApp.Areas.Panel.Controllers
         {
             if (ModelState.IsValid)
             {
-                string uniqueFileName = ProcessUploadedFile(data);
                 Project project = new Project();
+                project.Id = Guid.NewGuid();
                 project.Title = data.Project.Title;
                 project.Description = data.Project.Description;
-                project.PhotoPath = uniqueFileName;
+                project.CreatedAt = DateTime.Now;
+                project.UpdatedAt = DateTime.Now;
                 projectRepository.Add(project);
+                if (data.Images.Any())
+                {
+                    string uniqueFileName = ProcessCreateUploadedFile(data, project);
+                    project.PhotoPath = uniqueFileName;
+                }else
+                {
+                    project.PhotoPath = null;
+                }
+                projectRepository.Update(project);
                 TempData["Success"] = "Operation Successful!";
                 return RedirectToAction("index");
             }
@@ -90,7 +102,7 @@ namespace PersonalWebApp.Areas.Panel.Controllers
                 }
             }
 
-            var images = context.Projects.Include(p => p.ProjectImages).ThenInclude(p=>p.Image).ToList();
+            var images = context.Projects.Include(p => p.ProjectImages).ThenInclude(p => p.Image).ToList();
 
             List<string> projectImages = new List<string>();
             foreach (Project p in images)
@@ -99,10 +111,10 @@ namespace PersonalWebApp.Areas.Panel.Controllers
 
                 foreach (var pi in filter)
                 {
-                  if(pi.ProjectId == id)
+                    if (pi.ProjectId == id)
                     {
 
-                            projectImages.Add(pi.Image.ImagePath);
+                        projectImages.Add(pi.Image.ImagePath);
 
                     }
                 }
@@ -150,6 +162,7 @@ namespace PersonalWebApp.Areas.Panel.Controllers
                 project.Id = data.Project.Id;
                 project.Title = data.Project.Title;
                 project.Description = data.Project.Description;
+                project.UpdatedAt = DateTime.Now;
                 if (uniqueFileName != null)
                 {
                     project.PhotoPath = uniqueFileName;
@@ -246,6 +259,38 @@ namespace PersonalWebApp.Areas.Panel.Controllers
                     newImage.Image = image;
 
                     context.Projects.Include(p => p.ProjectImages).Single(p => p.Id == model.Project.Id).ProjectImages.Add(newImage);
+                    context.SaveChanges();
+
+                }
+
+            }
+
+            return uniqueFileName;
+        }
+        private string ProcessCreateUploadedFile(ProjectEditViewModel model, Project project)
+        {
+            string uniqueFileName = null;
+            if (model.Images != null && model.Images.Count > 0)
+            {
+                foreach (IFormFile photo in model.Images)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "userdata/projects");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        photo.CopyTo(fileStream);
+                    }
+
+                    Image image = new Image();
+                    image.ImageId = Guid.NewGuid();
+                    image.ImagePath = uniqueFileName;
+
+                    ProjectImages newImage = new ProjectImages();
+                    newImage.Project = project;
+                    newImage.Image = image;
+
+                    context.ProjectImages.Add(newImage);
                     context.SaveChanges();
 
                 }
