@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using PersonalWebApp.Areas.Panel.Data;
 using PersonalWebApp.Areas.Panel.Models;
 using PersonalWebApp.Data.ProjectData;
+using PersonalWebApp.Interfaces;
 
 namespace PersonalWebApp.Areas.Panel.Controllers
 {
@@ -15,20 +16,16 @@ namespace PersonalWebApp.Areas.Panel.Controllers
     [Authorize]
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository categoryRepository;
-        private readonly IProjectRepository projectRepository;
-        private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IGenericRepository<Category> categoryRepository;
 
-        public CategoryController(ICategoryRepository categoryRepository, IProjectRepository projectRepository, IHostingEnvironment hostingEnvironment)
+        public CategoryController(IGenericRepository<Category> categoryRepository, IHostingEnvironment hostingEnvironment)
         {
             this.categoryRepository = categoryRepository;
-            this.projectRepository = projectRepository;
-            this.hostingEnvironment = hostingEnvironment;
         }
         [HttpGet]
         public IActionResult Index()
         {
-            return View(categoryRepository.GetAllCategories());
+            return View(categoryRepository.GetAll());
         }
         [HttpGet]
         public IActionResult Create()
@@ -42,7 +39,8 @@ namespace PersonalWebApp.Areas.Panel.Controllers
             {
                 category.CreatedAt = DateTime.Now;
                 category.UpdatedAt = DateTime.Now;
-                categoryRepository.Add(category);
+                categoryRepository.Insert(category);
+                categoryRepository.Save();
                 TempData["Success"] = "Operation Successful!";
                 return RedirectToAction("index");
             }
@@ -54,13 +52,14 @@ namespace PersonalWebApp.Areas.Panel.Controllers
         [HttpGet]
         public IActionResult Edit(Guid id)
         {
-            Category category = categoryRepository.GetCategory(id);
+            Category category = categoryRepository.GetById(id);
             return View("CategoryEdit", category);
         }
         [HttpGet]
         public IActionResult Delete(Guid id)
         {
             categoryRepository.Delete(id);
+            categoryRepository.Save();
             TempData["Success"] = "Operation Successful!";
             return RedirectToAction("index");
         }
@@ -72,6 +71,7 @@ namespace PersonalWebApp.Areas.Panel.Controllers
                 category.CreatedAt = DateTime.Now;
                 category.UpdatedAt = DateTime.Now;
                 categoryRepository.Update(category);
+                categoryRepository.Save();
                 TempData["Success"] = "Operation Successful!";
                 return RedirectToAction("index");
             }

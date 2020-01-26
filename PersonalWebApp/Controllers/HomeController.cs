@@ -4,21 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PersonalWebApp.Data.ProjectData;
+using PersonalWebApp.Interfaces;
+using PersonalWebApp.Models;
 
 namespace PersonalWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IProjectRepository projectRepository;
+        private readonly IGenericRepository<Project> projectRepository;
 
-        public HomeController(IProjectRepository projectRepository)
+        public HomeController(IGenericRepository<Project> projectRepository)
         {
             this.projectRepository = projectRepository;
         }
         public IActionResult Index()
         {
             //return RedirectToAction("index", "project",new { area = "panel" });
-            return View(projectRepository.GetAllProjects());
+            return View(projectRepository.GetAll());
         }
     }
 }

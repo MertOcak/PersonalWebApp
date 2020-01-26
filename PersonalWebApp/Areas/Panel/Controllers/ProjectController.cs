@@ -12,6 +12,7 @@ using PersonalWebApp.Areas.Panel.Data;
 using PersonalWebApp.Areas.Panel.Models;
 using PersonalWebApp.Areas.Panel.ViewModels;
 using PersonalWebApp.Data.ProjectData;
+using PersonalWebApp.Interfaces;
 using PersonalWebApp.Models;
 
 namespace PersonalWebApp.Areas.Panel.Controllers
@@ -22,11 +23,11 @@ namespace PersonalWebApp.Areas.Panel.Controllers
     {
         private readonly AppDbContext context;
         private readonly DbContextOptions<AppDbContext> contextOptions;
-        private readonly ICategoryRepository categoryRepository;
-        private readonly IProjectRepository projectRepository;
+        private readonly IGenericRepository<Category> categoryRepository;
+        private readonly IGenericRepository<Project> projectRepository;
         private readonly IHostingEnvironment hostingEnvironment;
 
-        public ProjectController(AppDbContext context, DbContextOptions<AppDbContext> contextOptions, ICategoryRepository categoryRepository, IProjectRepository projectRepository, IHostingEnvironment hostingEnvironment)
+        public ProjectController(AppDbContext context, DbContextOptions<AppDbContext> contextOptions, IGenericRepository<Category> categoryRepository, IGenericRepository<Project> projectRepository, IHostingEnvironment hostingEnvironment)
         {
             this.context = context;
             this.contextOptions = contextOptions;
@@ -38,19 +39,19 @@ namespace PersonalWebApp.Areas.Panel.Controllers
         public IActionResult Index()
         {
             ProjectListViewModel data = new ProjectListViewModel();
-            data.Projects = projectRepository.GetAllProjects();
-            data.Categories = categoryRepository.GetAllCategories();
+            data.Projects = projectRepository.GetAll();
+            data.Categories = categoryRepository.GetAll();
             return View(data);
         }
         [HttpGet]
         public IActionResult Create()
         {
             ProjectEditViewModel data = new ProjectEditViewModel();
-            data.Categories = categoryRepository.GetAllCategories();
+            data.Categories = categoryRepository.GetAll();
             return View("ProjectCreate", data);
         }
         [HttpPost]
-        public IActionResult Create(ProjectEditViewModel data)
+        public IActionResult Create(ProjectEditViewModel data, string[] categoryList)
         {
             if (ModelState.IsValid)
             {
@@ -60,16 +61,39 @@ namespace PersonalWebApp.Areas.Panel.Controllers
                 project.Description = data.Project.Description;
                 project.CreatedAt = DateTime.Now;
                 project.UpdatedAt = DateTime.Now;
-                projectRepository.Add(project);
+                projectRepository.Insert(project);
+                projectRepository.Save();
+                using (var a = new AppDbContext(contextOptions))
+                {
+                    for (int i = 0; i < categoryList.Length; i++)
+                    {
+
+                        var category = a.Categories
+                        .Single(p => p.Id == Guid.Parse(categoryList[i]));
+
+                        var currentProject = a.Projects.Include(p => p.ProjectCategories).Single(p => p.Id == project.Id);
+
+                        // Add Categories
+                        currentProject.ProjectCategories.Add(new ProjectCategory
+                        {
+                            Project = project,
+                            Category = category
+                        });
+                        a.SaveChanges();
+                    }
+                }
+
                 if (data.Images.Any())
                 {
                     string uniqueFileName = ProcessCreateUploadedFile(data, project);
                     project.PhotoPath = uniqueFileName;
-                }else
+                }
+                else
                 {
                     project.PhotoPath = null;
                 }
                 projectRepository.Update(project);
+                projectRepository.Save();
                 TempData["Success"] = "Operation Successful!";
                 return RedirectToAction("index");
             }
@@ -82,7 +106,7 @@ namespace PersonalWebApp.Areas.Panel.Controllers
         public IActionResult Edit(Guid id)
         {
             ProjectEditViewModel data = new ProjectEditViewModel();
-            data.Categories = categoryRepository.GetAllCategories();
+            data.Categories = categoryRepository.GetAll();
 
             var categoriesImport = context.Projects
    .Include(x => x.ProjectCategories).ThenInclude(x => x.Category);
@@ -141,13 +165,14 @@ namespace PersonalWebApp.Areas.Panel.Controllers
 
 
 
-            data.Project = projectRepository.GetProject(id);
+            data.Project = projectRepository.GetById(id);
             return View("ProjectEdit", data);
         }
         [HttpGet]
         public IActionResult Delete(Guid id)
         {
             projectRepository.Delete(id);
+            projectRepository.Save();
             TempData["Success"] = "Operation Successful!";
             return RedirectToAction("index");
         }
@@ -173,56 +198,59 @@ namespace PersonalWebApp.Areas.Panel.Controllers
                 }
 
                 projectRepository.Update(project);
+                projectRepository.Save();
 
-
-                var currentProject = context.Projects.Include(p => p.ProjectCategories).Single(p => p.Id == data.Project.Id);
-
-
-
-                //foreach (var category in currentProject.ProjectCategories)
-                //{
-                //    currentProject.ProjectCategories.Remove(category);
-                //}
-                //context.SaveChanges();
-
-
-                //Delete Categories
-                foreach (var item in currentProject.ProjectCategories.ToList())
-                {
-                    currentProject.ProjectCategories.Remove(item);
-                    context.SaveChanges();
-                }
-
-                for (int i = 0; i < categoryList.Length; i++)
+                using (var a = new AppDbContext(contextOptions))
                 {
 
-                    var category = context.Categories
-                    .Single(p => p.Id == categoryList[i]);
+                    var currentProject = a.Projects.Include(p => p.ProjectCategories).Single(p => p.Id == data.Project.Id);
 
 
 
-                    //bool exists = context.Entry(category)
-                    // .Collection(m => m.ProjectCategories)
-                    // .Query()
-                    // .Any(x => x.CategoryId == categoryList[i]);
+                    //foreach (var category in currentProject.ProjectCategories)
+                    //{
+                    //    currentProject.ProjectCategories.Remove(category);
+                    //}
+                    //context.SaveChanges();
 
 
-
-                    //if (exists)
-                    //    continue;
-
-
-
-                    // Add Categories
-                    currentProject.ProjectCategories.Add(new ProjectCategory
+                    //Delete Categories
+                    foreach (var item in currentProject.ProjectCategories.ToList())
                     {
-                        Project = currentProject,
-                        Category = category
-                    });
-                    context.SaveChanges();
+                        currentProject.ProjectCategories.Remove(item);
+                        a.SaveChanges();
+                    }
+
+                    for (int i = 0; i < categoryList.Length; i++)
+                    {
+
+                        var category = a.Categories
+                        .Single(p => p.Id == categoryList[i]);
+
+
+
+                        //bool exists = context.Entry(category)
+                        // .Collection(m => m.ProjectCategories)
+                        // .Query()
+                        // .Any(x => x.CategoryId == categoryList[i]);
+
+
+
+                        //if (exists)
+                        //    continue;
+
+
+
+                        // Add Categories
+                        currentProject.ProjectCategories.Add(new ProjectCategory
+                        {
+                            Project = currentProject,
+                            Category = category
+                        });
+                        a.SaveChanges();
+                    }
+
                 }
-
-
 
                 TempData["Success"] = "Operation Successful!";
                 return RedirectToAction("index");
@@ -247,7 +275,7 @@ namespace PersonalWebApp.Areas.Panel.Controllers
                         photo.CopyTo(fileStream);
                     }
 
-                    var currentProject = context.Projects.Include(p => p.ProjectCategories).Single(p => p.Id == model.Project.Id);
+                    var currentProject = context.Projects.AsNoTracking().Include(p => p.ProjectCategories).Single(p => p.Id == model.Project.Id);
 
 
                     Image image = new Image();
@@ -258,8 +286,11 @@ namespace PersonalWebApp.Areas.Panel.Controllers
                     newImage.Project = currentProject;
                     newImage.Image = image;
 
-                    context.Projects.Include(p => p.ProjectImages).Single(p => p.Id == model.Project.Id).ProjectImages.Add(newImage);
-                    context.SaveChanges();
+                    using (var a = new AppDbContext(contextOptions))
+                    {
+                        a.Projects.Include(p => p.ProjectImages).Single(p => p.Id == model.Project.Id).ProjectImages.Add(newImage);
+                        a.SaveChanges();
+                    }
 
                 }
 

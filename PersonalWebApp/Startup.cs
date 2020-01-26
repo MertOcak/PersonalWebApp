@@ -12,9 +12,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using PersonalWebApp.Areas.Panel.Data;
+using PersonalWebApp.Areas.Panel.Models;
 using PersonalWebApp.Data.ProjectData;
+using PersonalWebApp.Interfaces;
 using PersonalWebApp.Models;
-
+using PersonalWebApp.Services;
 
 namespace PersonalWebApp
 {
@@ -45,8 +47,10 @@ namespace PersonalWebApp
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
             }).AddEntityFrameworkStores<AppDbContext>();
             services.AddMvc();
-            services.AddScoped<IProjectRepository, SqlProjectRepository>();
-            services.AddScoped<ICategoryRepository, SqlCategoryRepository>();
+            services.AddTransient<IGenericRepository<Project>, GenericRepository<Project>>();
+            services.AddTransient<IGenericRepository<Category>, GenericRepository<Category>>();
+            //services.AddScoped<IProjectRepository, SqlProjectRepository>();
+            //services.AddScoped<ICategoryRepository, SqlCategoryRepository>();
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/panel";
