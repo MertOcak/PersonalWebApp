@@ -64,14 +64,10 @@ namespace PersonalWebApp.Areas.Panel.Controllers
                 {
                     for (int i = 0; i < categoryList.Length; i++)
                     {
-
                         var category = a.Categories
                         .Single(p => p.Id == Guid.Parse(categoryList[i]));
 
-                        var currentProject = a.Projects.Include(p => p.ProjectCategories).Single(p => p.Id == project.Id);
-
-                        // Add Categories
-                        currentProject.ProjectCategories.Add(new ProjectCategory
+                        a.Projects.Include(p => p.ProjectCategories).Single(p => p.Id == project.Id).ProjectCategories.Add(new ProjectCategory
                         {
                             Project = project,
                             Category = category
@@ -82,7 +78,7 @@ namespace PersonalWebApp.Areas.Panel.Controllers
 
                 if (data.Images.Any())
                 {
-                    string uniqueFileName = ProcessCreateUploadedFile(data, project);
+                    string uniqueFileName = ProcessUploadedFile(data, project);
                     project.PhotoPath = uniqueFileName;
                 }
                 else
@@ -110,7 +106,6 @@ namespace PersonalWebApp.Areas.Panel.Controllers
 
             var selectedCategories = categoriesImport.Where(x => x.Id == id).Select(x => x.ProjectCategories).First().ToList();
 
-
             for (int i = 0; i < selectedCategories.Count(); i++)
             {
                 foreach (var category in data.Categories)
@@ -134,9 +129,7 @@ namespace PersonalWebApp.Areas.Panel.Controllers
                 {
                     if (pi.ProjectId == id)
                     {
-
                         projectImages.Add(pi.Image.ImagePath);
-
                     }
                 }
             }
@@ -201,7 +194,6 @@ namespace PersonalWebApp.Areas.Panel.Controllers
                 {
 
                     var currentProject = a.Projects.Include(p => p.ProjectCategories).Single(p => p.Id == data.Project.Id);
-
 
 
                     //foreach (var category in currentProject.ProjectCategories)
@@ -295,7 +287,7 @@ namespace PersonalWebApp.Areas.Panel.Controllers
 
             return uniqueFileName;
         }
-        private string ProcessCreateUploadedFile(ProjectEditViewModel model, Project project)
+        private string ProcessUploadedFile(ProjectEditViewModel model, Project project)
         {
             string uniqueFileName = null;
             if (model.Images != null && model.Images.Count > 0)
