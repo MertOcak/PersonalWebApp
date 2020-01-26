@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PersonalWebApp.Areas.Panel.Models
+namespace PersonalWebApp.Models
 {
     public class Category
     {

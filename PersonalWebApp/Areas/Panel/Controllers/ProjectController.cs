@@ -8,10 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PersonalWebApp.Areas.Panel.Data;
-using PersonalWebApp.Areas.Panel.Models;
 using PersonalWebApp.Areas.Panel.ViewModels;
-using PersonalWebApp.Data.ProjectData;
 using PersonalWebApp.Interfaces;
 using PersonalWebApp.Models;
 

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using PersonalWebApp.Areas.Panel.Models;
 using PersonalWebApp.Models.Configurations;
 
 namespace PersonalWebApp.Models

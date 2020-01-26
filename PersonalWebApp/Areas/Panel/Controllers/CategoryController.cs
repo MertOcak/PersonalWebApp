@@ -5,10 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using PersonalWebApp.Areas.Panel.Data;
-using PersonalWebApp.Areas.Panel.Models;
-using PersonalWebApp.Data.ProjectData;
 using PersonalWebApp.Interfaces;
+using PersonalWebApp.Models;
 
 namespace PersonalWebApp.Areas.Panel.Controllers
 {

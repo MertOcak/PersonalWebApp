@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PersonalWebApp.Areas.Admin.ViewModels;
-using PersonalWebApp.Areas.Panel.Models;
 using PersonalWebApp.Models;
 
 namespace PersonalWebApp.Areas.Panel.Controllers
