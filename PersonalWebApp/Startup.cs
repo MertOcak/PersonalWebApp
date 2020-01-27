@@ -46,6 +46,9 @@ namespace PersonalWebApp
             services.AddMvc();
             services.AddTransient<IGenericRepository<Project>, GenericRepository<Project>>();
             services.AddTransient<IGenericRepository<Category>, GenericRepository<Category>>();
+            services.AddTransient<IGenericRepository<About>, GenericRepository<About>>();
+            services.AddTransient<IGenericRepository<Education>, GenericRepository<Education>>();
+
             //services.AddScoped<IProjectRepository, SqlProjectRepository>();
             //services.AddScoped<ICategoryRepository, SqlCategoryRepository>();
             services.ConfigureApplicationCookie(options =>

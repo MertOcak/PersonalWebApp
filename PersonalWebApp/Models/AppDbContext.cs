@@ -20,6 +20,10 @@ namespace PersonalWebApp.Models
 
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<About> Abouts { get; set; }
+
+        public DbSet<Education> Educations { get; set; }
+
         public DbSet<Image> Images { get; set; }
 
         public DbSet<ProjectImages> ProjectImages { get; set; }
