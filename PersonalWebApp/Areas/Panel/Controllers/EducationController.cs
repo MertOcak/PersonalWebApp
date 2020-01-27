@@ -35,9 +35,15 @@ namespace PersonalWebApp.Areas.Panel.Controllers
         [HttpPost]
         public IActionResult Create(Education model)
         {
-            educationRepository.Insert(model);
-            educationRepository.Save();
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                educationRepository.Insert(model);
+                educationRepository.Save();
+                TempData["Success"] = "Operation Successful!";
+                return RedirectToAction("Index");
+            }
+
+            return View("EducationCreate", model);
         }
 
         [HttpGet]

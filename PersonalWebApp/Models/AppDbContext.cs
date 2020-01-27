@@ -17,14 +17,18 @@ namespace PersonalWebApp.Models
         }
 
         public DbSet<Project> Projects { get; set; }
-
         public DbSet<Category> Categories { get; set; }
-
         public DbSet<About> Abouts { get; set; }
-
         public DbSet<Education> Educations { get; set; }
+        public DbSet<AboutSkill> AboutSkills { get; set; }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<Experience> Experiences { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<ContactRequest> ContactRequests { get; set; }
+        public DbSet<General> Generals { get; set; }
 
         public DbSet<Image> Images { get; set; }
+
 
         public DbSet<ProjectImages> ProjectImages { get; set; }
 
@@ -41,6 +45,7 @@ namespace PersonalWebApp.Models
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new ProjectCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectImageConfiguration());
+            modelBuilder.ApplyConfiguration(new BlogCategoryConfiguration());
 
         }
 

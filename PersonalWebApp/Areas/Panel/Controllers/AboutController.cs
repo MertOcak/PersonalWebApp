@@ -18,7 +18,7 @@ namespace PersonalWebApp.Areas.Panel.Controllers
         private readonly DbContextOptions<AppDbContext> contextOptions;
         private readonly IGenericRepository<About> aboutRepository;
 
-        public AboutController(AppDbContext context, DbContextOptions<AppDbContext> contextOptions, IGenericRepository<About> aboutRepository )
+        public AboutController(AppDbContext context, DbContextOptions<AppDbContext> contextOptions, IGenericRepository<About> aboutRepository)
         {
             this.context = context;
             this.contextOptions = contextOptions;
@@ -29,7 +29,7 @@ namespace PersonalWebApp.Areas.Panel.Controllers
         public IActionResult Edit(Guid id)
         {
             About model = aboutRepository.GetById(id);
-            return View("AboutEdit",model);
+            return View("AboutEdit", model);
         }
 
 
@@ -40,12 +40,10 @@ namespace PersonalWebApp.Areas.Panel.Controllers
             {
                 aboutRepository.Update(model);
                 aboutRepository.Save();
-            } else
-            {
-                return View("AboutEdit", model);
+                TempData["Success"] = "Changes Saved";
+                return RedirectToAction("Edit", new { id = model.Id });
             }
-            TempData["Success"] = "Changes Saved";
-            return RedirectToAction("Edit", new { id = model.Id });
+            return View("AboutEdit", model);
         }
 
     }

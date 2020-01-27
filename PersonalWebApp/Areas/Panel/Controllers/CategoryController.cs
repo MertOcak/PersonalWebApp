@@ -42,10 +42,7 @@ namespace PersonalWebApp.Areas.Panel.Controllers
                 TempData["Success"] = "Operation Successful!";
                 return RedirectToAction("index");
             }
-            else
-            {
-                return View("CategoryCreate", category);
-            }
+            return View("CategoryCreate", category);
         }
         [HttpGet]
         public IActionResult Edit(Guid id)

@@ -200,89 +200,43 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> *@
 
-        <section class="colorlib-skills" data-section="skills">
-            <div class="colorlib-narrow-content">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-                        <span class="heading-meta">My Specialty</span>
-                        <h2 class="colorlib-heading animate-box">My Skills</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
-                        <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
-                    </div>
-                    <div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-                        <div class="progress-wrap">
-                            <h3>Photoshop</h3>
-                            <div class="progress">
-                                <div class="progress-bar color-1" role="progressbar" aria-valuenow="75"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:75%">
-                                    <span>75%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-                        <div class="progress-wrap">
-                            <h3>jQuery</h3>
-                            <div class="progress">
-                                <div class="progress-bar color-2" role="progressbar" aria-valuenow="60"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:60%">
-                                    <span>60%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-                        <div class="progress-wrap">
-                            <h3>HTML5</h3>
-                            <div class="progress">
-                                <div class="progress-bar color-3" role="progressbar" aria-valuenow="85"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:85%">
-                                    <span>85%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-                        <div class="progress-wrap">
-                            <h3>CSS3</h3>
-                            <div class="progress">
-                                <div class="progress-bar color-4" role="progressbar" aria-valuenow="90"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:90%">
-                                    <span>90%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-                        <div class="progress-wrap">
-                            <h3>WordPress</h3>
-                            <div class="progress">
-                                <div class="progress-bar color-5" role="progressbar" aria-valuenow="70"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                    <span>70%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-                        <div class="progress-wrap">
-                            <h3>SEO</h3>
-                            <div class="progress">
-                                <div class="progress-bar color-6" role="progressbar" aria-valuenow="80"
-                                     aria-valuemin="0" aria-valuemax="100" style="width:80%">
-                                    <span>80%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <section class="colorlib-skills" data-section="skills">
+        <div class="colorlib-narrow-content">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+                    <span class="heading-meta">My Specialty</span>
+                    <h2 class="colorlib-heading animate-box">My Skills</h2>
                 </div>
             </div>
-        </section> *@
+            <div class="row">
+                <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
+                    <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
+                </div>
+                @{
+                    int evenOrOddCheck = 0;
+                }
+                @foreach (var skill in Model.Skills)
+                {
+                    <div class="col-md-6 animate-box" data-animate-effect="fadeIn@(evenOrOddCheck%2 == 0 ? "Left" : "Right")">
+                        <div class="progress-wrap">
+                            <h3>@skill.Name</h3>
+                            <div class="progress">
+                                <div class="progress-bar color-@(evenOrOddCheck)" role="progressbar" aria-valuenow="@skill.Dominance"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:@(skill.Dominance)%; background: @skill.Color !important ">
+                                    <span>@skill.Dominance%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    evenOrOddCheck += 1;
+                }
+            </div>
+        </div>
+    </section>
+
+
 
     <section class="colorlib-education" data-section="education">
         <div class="colorlib-narrow-content">
@@ -322,51 +276,7 @@
                                 idGenerator += 1;
                             }
 
- @*
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingThree">
-                                        <h4 class="panel-title">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                Diploma in Information Technology
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                        <div class="panel-body">
-                                            <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingFour">
-                                        <h4 class="panel-title">
-                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                                Diploma in Information Technology
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                                        <div class="panel-body">
-                                            <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                                                <div class="panel panel-default">
-                                                                    <div class="panel-heading" role="tab" id="headingFive">
-                                                                        <h4 class="panel-title">
-                                                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                                                                High School Secondary Education
-                                                                            </a>
-                                                                        </h4>
-                                                                    </div>
-                                                                    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                                                                        <div class="panel-body">
-                                                                            <p>Far far away, behind the word <strong>mountains</strong>, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>*@
                         </div>
                     </div>
                 </div>
@@ -374,7 +284,7 @@
         </div>
     </section>
 
-    @*  <section class="colorlib-experience" data-section="experience">
+      <section class="colorlib-experience" data-section="experience">
             <div class="colorlib-narrow-content">
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
@@ -385,68 +295,25 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="timeline-centered">
-                            <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-                                <div class="timeline-entry-inner">
+                            @{ 
+                                int experienceChecker = 0;
+                            }
+                            @foreach (var experience in Model.Experiences.OrderByDescending(m=>m.Duration))
+                            {
+                                <article class="timeline-entry animate-box" data-animate-effect="fadeIn@(experienceChecker == 0 ? "Left" : "Right")">
+                                    <div class="timeline-entry-inner">
 
-                                    <div class="timeline-icon color-1">
-                                        <i class="icon-pen2"></i>
-                                    </div>
+                                        <div class="timeline-icon" style="background: @(experience.Color)">
+                                            <i class="@experience.Icon"></i>
+                                        </div>
 
-                                    <div class="timeline-label">
-                                        <h2><a href="#">Full Stack Developer</a> <span>2017-2018</span></h2>
-                                        <p>Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare how cordial two promise. Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.</p>
+                                        <div class="timeline-label">
+                                            <h2><a href="#">@experience.ExperienceName</a> <span>@experience.Duration</span></h2>
+                                           @Html.Raw(experience.Description)
+                                        </div>
                                     </div>
-                                </div>
-                            </article>
-
-
-                            <article class="timeline-entry animate-box" data-animate-effect="fadeInRight">
-                                <div class="timeline-entry-inner">
-                                    <div class="timeline-icon color-2">
-                                        <i class="icon-pen2"></i>
-                                    </div>
-                                    <div class="timeline-label">
-                                        <h2><a href="#">Front End Developer at Google Company</a> <span>2017-2018</span></h2>
-                                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-                                <div class="timeline-entry-inner">
-                                    <div class="timeline-icon color-3">
-                                        <i class="icon-pen2"></i>
-                                    </div>
-                                    <div class="timeline-label">
-                                        <h2><a href="#">System Analyst</a> <span>2017-2018</span></h2>
-                                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="timeline-entry animate-box" data-animate-effect="fadeInTop">
-                                <div class="timeline-entry-inner">
-                                    <div class="timeline-icon color-4">
-                                        <i class="icon-pen2"></i>
-                                    </div>
-                                    <div class="timeline-label">
-                                        <h2><a href="#">Creative Designer</a> <span>2017-2018</span></h2>
-                                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-                                <div class="timeline-entry-inner">
-                                    <div class="timeline-icon color-5">
-                                        <i class="icon-pen2"></i>
-                                    </div>
-                                    <div class="timeline-label">
-                                        <h2><a href="#">UI/UX Designer at Envato</a> <span>2017-2018</span></h2>
-                                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                    </div>
-                                </div>
-                            </article>
+                                </article>
+                            }
 
                             <article class="timeline-entry begin animate-box" data-animate-effect="fadeInBottom">
                                 <div class="timeline-entry-inner">
@@ -458,7 +325,7 @@
                     </div>
                 </div>
             </div>
-        </section>*@
+        </section>
 
     <section class="colorlib-work" data-section="work">
         <div class="colorlib-narrow-content">
@@ -481,7 +348,6 @@
                                 count += 1;
                             }
                         }
-                    </p></p>
                 </div>
             </div>
 

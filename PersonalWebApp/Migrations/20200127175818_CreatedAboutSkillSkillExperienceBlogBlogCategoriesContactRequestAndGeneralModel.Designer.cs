@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonalWebApp.Models;
 
 namespace PersonalWebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200127175818_CreatedAboutSkillSkillExperienceBlogBlogCategoriesContactRequestAndGeneralModel")]
+    partial class CreatedAboutSkillSkillExperienceBlogBlogCategoriesContactRequestAndGeneralModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -429,24 +431,6 @@ namespace PersonalWebApp.Migrations
                     b.HasIndex("ImageId");
 
                     b.ToTable("ProjectImages");
-                });
-
-            modelBuilder.Entity("PersonalWebApp.Models.Skill", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Color")
-                        .IsRequired();
-
-                    b.Property<int>("Dominance");
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Skills");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

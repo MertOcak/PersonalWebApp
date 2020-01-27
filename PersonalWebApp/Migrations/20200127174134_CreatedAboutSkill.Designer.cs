@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonalWebApp.Models;
 
 namespace PersonalWebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200127174134_CreatedAboutSkill")]
+    partial class CreatedAboutSkill
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,39 +217,6 @@ namespace PersonalWebApp.Migrations
                     b.ToTable("AboutSkills");
                 });
 
-            modelBuilder.Entity("PersonalWebApp.Models.Blog", b =>
-                {
-                    b.Property<Guid>("BlogId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Content")
-                        .IsRequired();
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<string>("Title")
-                        .IsRequired();
-
-                    b.Property<DateTime>("UpdatedAt");
-
-                    b.HasKey("BlogId");
-
-                    b.ToTable("Blogs");
-                });
-
-            modelBuilder.Entity("PersonalWebApp.Models.BlogCategories", b =>
-                {
-                    b.Property<Guid>("BlogId");
-
-                    b.Property<Guid>("CategoryId");
-
-                    b.HasKey("BlogId", "CategoryId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("BlogCategories");
-                });
-
             modelBuilder.Entity("PersonalWebApp.Models.Category", b =>
                 {
                     b.Property<Guid>("Id")
@@ -270,28 +239,6 @@ namespace PersonalWebApp.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("PersonalWebApp.Models.ContactRequest", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("Message")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.Property<string>("Subject")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ContactRequests");
-                });
-
             modelBuilder.Entity("PersonalWebApp.Models.Education", b =>
                 {
                     b.Property<Guid>("Id")
@@ -306,62 +253,6 @@ namespace PersonalWebApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Educations");
-                });
-
-            modelBuilder.Entity("PersonalWebApp.Models.Experience", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Color")
-                        .IsRequired();
-
-                    b.Property<string>("Description")
-                        .IsRequired();
-
-                    b.Property<string>("Duration")
-                        .IsRequired();
-
-                    b.Property<string>("ExperienceName")
-                        .IsRequired();
-
-                    b.Property<string>("Icon")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Experiences");
-                });
-
-            modelBuilder.Entity("PersonalWebApp.Models.General", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("SiteColor")
-                        .IsRequired();
-
-                    b.Property<string>("SiteLogoPath")
-                        .IsRequired();
-
-                    b.Property<string>("SiteOwnerAddress")
-                        .IsRequired();
-
-                    b.Property<string>("SiteOwnerCountry")
-                        .IsRequired();
-
-                    b.Property<string>("SiteOwnerEmail")
-                        .IsRequired();
-
-                    b.Property<string>("SiteOwnerJob")
-                        .IsRequired();
-
-                    b.Property<string>("SiteOwnerName")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Generals");
                 });
 
             modelBuilder.Entity("PersonalWebApp.Models.Image", b =>
@@ -431,24 +322,6 @@ namespace PersonalWebApp.Migrations
                     b.ToTable("ProjectImages");
                 });
 
-            modelBuilder.Entity("PersonalWebApp.Models.Skill", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Color")
-                        .IsRequired();
-
-                    b.Property<int>("Dominance");
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Skills");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -491,19 +364,6 @@ namespace PersonalWebApp.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("PersonalWebApp.Models.BlogCategories", b =>
-                {
-                    b.HasOne("PersonalWebApp.Models.Blog", "Blog")
-                        .WithMany("BlogCategories")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("PersonalWebApp.Models.Category", "Category")
-                        .WithMany("BlogCategories")
-                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -39,6 +39,7 @@
     <!-- Owl Carousel -->
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
     <!-- Theme style  -->
     <link rel="stylesheet" href="css/style.css">
 
@@ -48,6 +49,7 @@
     <!--[if lt IE 9]>
     <script src="js/respond.min.js"></script>
     <![endif]-->
+    @await Component.InvokeAsync("Css")
 
 </head>
 <body>
@@ -63,9 +65,9 @@
                 <nav id="colorlib-main-menu" role="navigation" class="navbar">
                     <div id="navbar" class="collapse">
                         <ul>
-                            <li class="active"><a href="#" data-nav-section="home">Home</a></li>
+                            @*<li class="active"><a href="#" data-nav-section="home">Home</a></li>*@
                             <li><a href="#" data-nav-section="about">About</a></li>
-                            <li><a href="#" data-nav-section="services">Services</a></li>
+                            @*<li><a href="#" data-nav-section="services">Services</a></li>*@
                             <li><a href="#" data-nav-section="skills">Skills</a></li>
                             <li><a href="#" data-nav-section="education">Education</a></li>
                             <li><a href="#" data-nav-section="experience">Experience</a></li>
@@ -81,8 +83,7 @@
                         <small>
                             &copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> </span> <span>Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash.com</a></span>
+                            <script>document.write(new Date().getFullYear());</script> <br /> All rights reserved
                         </small>
                     </p>
                     <ul>
@@ -112,8 +113,6 @@
     <script src="js/owl.carousel.min.js"></script>
     <!-- Counters -->
     <script src="js/jquery.countTo.js"></script>
-
-
     <!-- MAIN JS -->
     <script src="js/main.js"></script>
 

@@ -15,13 +15,17 @@ namespace PersonalWebApp.Controllers
         private readonly IGenericRepository<About> aboutRepository;
         private readonly IGenericRepository<Category> categoryRepository;
         private readonly IGenericRepository<Education> educationRepository;
+        private readonly IGenericRepository<Skill> skillRepository;
+        private readonly IGenericRepository<Experience> experienceRepository;
 
-        public HomeController(IGenericRepository<Project> projectRepository, IGenericRepository<About> aboutRepository, IGenericRepository<Category> categoryRepository, IGenericRepository<Education> educationRepository)
+        public HomeController(IGenericRepository<Project> projectRepository, IGenericRepository<About> aboutRepository, IGenericRepository<Category> categoryRepository, IGenericRepository<Education> educationRepository, IGenericRepository<Skill> skillRepository, IGenericRepository<Experience> experienceRepository)
         {
             this.projectRepository = projectRepository;
             this.aboutRepository = aboutRepository;
             this.categoryRepository = categoryRepository;
             this.educationRepository = educationRepository;
+            this.skillRepository = skillRepository;
+            this.experienceRepository = experienceRepository;
         }
         public IActionResult Index()
         {
@@ -29,7 +33,9 @@ namespace PersonalWebApp.Controllers
                 Projects = projectRepository.GetAll(),
                 About = aboutRepository.GetById(Guid.Parse("3d6257bf-227d-4f35-9d13-369205940242")),
                 Categories = categoryRepository.GetAll(),
-                Educations = educationRepository.GetAll()
+                Educations = educationRepository.GetAll(),
+                Skills = skillRepository.GetAll(),
+                Experiences = experienceRepository.GetAll()
             };
 
             //return RedirectToAction("index", "project",new { area = "panel" });

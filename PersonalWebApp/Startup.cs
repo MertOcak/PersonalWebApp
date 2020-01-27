@@ -48,6 +48,12 @@ namespace PersonalWebApp
             services.AddTransient<IGenericRepository<Category>, GenericRepository<Category>>();
             services.AddTransient<IGenericRepository<About>, GenericRepository<About>>();
             services.AddTransient<IGenericRepository<Education>, GenericRepository<Education>>();
+            services.AddTransient<IGenericRepository<AboutSkill>, GenericRepository<AboutSkill>>();
+            services.AddTransient<IGenericRepository<Skill>, GenericRepository<Skill>>();
+            services.AddTransient<IGenericRepository<Experience>, GenericRepository<Experience>>();
+            services.AddTransient<IGenericRepository<Blog>, GenericRepository<Blog>>();
+            services.AddTransient<IGenericRepository<ContactRequest>, GenericRepository<ContactRequest>>();
+            services.AddTransient<IGenericRepository<General>, GenericRepository<General>>();
 
             //services.AddScoped<IProjectRepository, SqlProjectRepository>();
             //services.AddScoped<ICategoryRepository, SqlCategoryRepository>();

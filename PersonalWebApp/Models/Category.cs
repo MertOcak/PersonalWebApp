@@ -21,5 +21,6 @@ namespace PersonalWebApp.Models
 
         // Relationships Many to Many for Categories
         public ICollection<ProjectCategory> ProjectCategories { get; set; }
+        public ICollection<BlogCategories> BlogCategories { get; set; }
     }
 }

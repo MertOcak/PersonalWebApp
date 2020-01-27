@@ -114,7 +114,6 @@ namespace PersonalWebApp.Areas.Panel.Controllers
                     {
                         category.IsChecked = true;
                     }
-
                 }
             }
 

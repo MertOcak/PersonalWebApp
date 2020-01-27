@@ -69,7 +69,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Panel\wwwroot\" />
     <Folder Include="Areas\Panel\Utilities\" />
   </ItemGroup>
 

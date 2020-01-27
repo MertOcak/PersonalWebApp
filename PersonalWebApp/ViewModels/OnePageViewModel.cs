@@ -12,5 +12,7 @@ namespace PersonalWebApp.ViewModels
         public About About { get; set; }
         public IEnumerable<Category> Categories { get; set; }
         public IEnumerable<Education> Educations { get; set; }
+        public IEnumerable<Skill> Skills { get; set; }
+        public IEnumerable<Experience> Experiences { get; set; }
     }
 }
