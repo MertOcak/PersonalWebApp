@@ -70,6 +70,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Panel\Utilities\" />
+    <Folder Include="wwwroot\userdata\blogs\" />
   </ItemGroup>
 
 </Project>

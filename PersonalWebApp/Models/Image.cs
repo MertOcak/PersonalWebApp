@@ -10,6 +10,7 @@ namespace PersonalWebApp.Models
         public Guid ImageId { get; set; }
         public string ImagePath { get; set; }
         public ICollection<ProjectImages> ProjectImages { get; set; }
+        public ICollection<BlogImages> BlogImages { get; set; }
 
     }
 }

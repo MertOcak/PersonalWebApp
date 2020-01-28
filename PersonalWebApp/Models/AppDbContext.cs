@@ -26,11 +26,9 @@ namespace PersonalWebApp.Models
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<ContactRequest> ContactRequests { get; set; }
         public DbSet<General> Generals { get; set; }
-
         public DbSet<Image> Images { get; set; }
-
-
         public DbSet<ProjectImages> ProjectImages { get; set; }
+        public DbSet<BlogImages> BlogImages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -46,6 +44,7 @@ namespace PersonalWebApp.Models
             modelBuilder.ApplyConfiguration(new ProjectCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProjectImageConfiguration());
             modelBuilder.ApplyConfiguration(new BlogCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new BlogImageConfiguration());
 
         }
 

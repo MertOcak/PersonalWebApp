@@ -13,8 +13,10 @@ namespace PersonalWebApp.Models
         public DateTime UpdatedAt { get; set; }
         [Required]
         public string Title { get; set; }
+        public string PhotoPath { get; set; }
         [Required]
         public string Content { get; set; }
         public ICollection<BlogCategories> BlogCategories { get; set; }
+        public ICollection<BlogImages> BlogImages { get; set; }
     }
 }
