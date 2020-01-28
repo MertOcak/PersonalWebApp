@@ -14,5 +14,9 @@ namespace PersonalWebApp.ViewModels
         public IEnumerable<Education> Educations { get; set; }
         public IEnumerable<Skill> Skills { get; set; }
         public IEnumerable<Experience> Experiences { get; set; }
+        public IEnumerable<Blog> Blogs { get; set; }
+        public List<Blog> BlogCategories { get; set; }
+        public IEnumerable<AboutSkill> AboutSkills { get; set; }
+        public ContactRequest ContactRequest { get; set; }
     }
 }

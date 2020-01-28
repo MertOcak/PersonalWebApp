@@ -7,22 +7,18 @@
 
   <ItemGroup>
     <Compile Remove="Panel\**" />
-    <Compile Remove="wwwroot\css\**" />
     <Compile Remove="wwwroot\frontend\**" />
     <Compile Remove="wwwroot\img\**" />
     <Compile Remove="wwwroot\js\**" />
     <Content Remove="Panel\**" />
-    <Content Remove="wwwroot\css\**" />
     <Content Remove="wwwroot\frontend\**" />
     <Content Remove="wwwroot\img\**" />
     <Content Remove="wwwroot\js\**" />
     <EmbeddedResource Remove="Panel\**" />
-    <EmbeddedResource Remove="wwwroot\css\**" />
     <EmbeddedResource Remove="wwwroot\frontend\**" />
     <EmbeddedResource Remove="wwwroot\img\**" />
     <EmbeddedResource Remove="wwwroot\js\**" />
     <None Remove="Panel\**" />
-    <None Remove="wwwroot\css\**" />
     <None Remove="wwwroot\frontend\**" />
     <None Remove="wwwroot\img\**" />
     <None Remove="wwwroot\js\**" />
@@ -71,6 +67,12 @@
   <ItemGroup>
     <Folder Include="Areas\Panel\Utilities\" />
     <Folder Include="wwwroot\userdata\blogs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\.DS_Store" />
+    <None Include="wwwroot\css\bootstrap.css.map" />
+    <None Include="wwwroot\css\style.css.map" />
   </ItemGroup>
 
 </Project>

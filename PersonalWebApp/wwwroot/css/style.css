@@ -5,6 +5,10 @@
   font-weight: normal;
   font-style: normal; }
 
+.custom-timeline-hover:hover {
+    opacity: 1 !important;
+}
+
 /* =======================================================
 *
 * 	Template Style 
