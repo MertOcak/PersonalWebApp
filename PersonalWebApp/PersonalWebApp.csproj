@@ -9,19 +9,15 @@
     <Compile Remove="Panel\**" />
     <Compile Remove="wwwroot\frontend\**" />
     <Compile Remove="wwwroot\img\**" />
-    <Compile Remove="wwwroot\js\**" />
     <Content Remove="Panel\**" />
     <Content Remove="wwwroot\frontend\**" />
     <Content Remove="wwwroot\img\**" />
-    <Content Remove="wwwroot\js\**" />
     <EmbeddedResource Remove="Panel\**" />
     <EmbeddedResource Remove="wwwroot\frontend\**" />
     <EmbeddedResource Remove="wwwroot\img\**" />
-    <EmbeddedResource Remove="wwwroot\js\**" />
     <None Remove="Panel\**" />
     <None Remove="wwwroot\frontend\**" />
     <None Remove="wwwroot\img\**" />
-    <None Remove="wwwroot\js\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -76,6 +72,19 @@
     <None Include="wwwroot\css\.DS_Store" />
     <None Include="wwwroot\css\bootstrap.css.map" />
     <None Include="wwwroot\css\style.css.map" />
+    <None Include="wwwroot\js\.DS_Store" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\cssrefresh.js" />
+    <None Include="wwwroot\js\google_map.js" />
+    <None Include="wwwroot\js\jquery.countTo.js" />
+    <None Include="wwwroot\js\jquery.easing.1.3.js" />
+    <None Include="wwwroot\js\jquery.flexslider-min.js" />
+    <None Include="wwwroot\js\jquery.min.js" />
+    <None Include="wwwroot\js\jquery.waypoints.min.js" />
+    <None Include="wwwroot\js\main.js" />
+    <None Include="wwwroot\js\modernizr-2.6.2.min.js" />
+    <None Include="wwwroot\js\owl.carousel.min.js" />
+    <None Include="wwwroot\js\respond.min.js" />
   </ItemGroup>
 
 </Project>

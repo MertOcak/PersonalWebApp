@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   @await Component.InvokeAsync("Meta")
+    @await Component.InvokeAsync("Meta")
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" href="favicon.ico">
@@ -28,6 +28,8 @@
 
     <!-- Theme style  -->
     <link rel="stylesheet" href="css/style.css">
+    @*<link rel="stylesheet" type="text/css" href="css/dark.css" />*@
+    @*<script src="~/js/cssrefresh.js"></script>*@
 
     <!-- Modernizr JS -->
     <script src="js/modernizr-2.6.2.min.js"></script>
@@ -43,7 +45,7 @@
         <div class="container-wrap">
             <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
             <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
-               @await Component.InvokeAsync("VCard")
+                @await Component.InvokeAsync("VCard")
                 <nav id="colorlib-main-menu" role="navigation" class="navbar">
                     <div id="navbar" class="collapse">
                         <ul>
@@ -62,6 +64,8 @@
 
                 <div class="colorlib-footer">
                     <p>
+                        @*<a style="cursor:pointer; display:block" onclick="changeCSS('css/light.css', 14);">Light Mode</a>
+                            <a style="cursor:pointer; display:block" onclick="changeCSS('css/dark.css', 14);">Dark Mode</a>*@
                         <small>
                             Copyright &copy;
                             <script>document.write(new Date().getFullYear());</script> <br /> All rights reserved

@@ -290,7 +290,7 @@
                         @foreach (var experience in Model.Experiences.OrderByDescending(m => m.Duration))
                         {
                             var opacity = 0.8 - (experienceChecker * 0.2);
-                            <div class="custom-timeline-hover" style="opacity:@(experienceChecker==0 ? "1": "0.3")">
+                            <div class="custom-timeline-hover" style="opacity:@(experienceChecker==0 ? "1": "1")">
                                 <article class="timeline-entry animate-box" data-animate-effect="fadeIn@(experienceChecker == 0 ? "Left" : "Right")" !important">
                                     <div class="timeline-entry-inner">
 
@@ -388,7 +388,7 @@
                             <a asp-action="ViewBlog" asp-route-id="@blog.BlogId" class="blog-img"><img src="~/userdata/blogs/@blog.PhotoPath" class="img-responsive" alt="@blog.Title"></a>
                             <div class="desc">
                                 <span>
-                                    <small>@blog.CreatedAt </small> | <small>
+                                    <small>@blog.UpdatedAt </small> | <small>
                                         @{
                                             var blogCategories = Model.BlogCategories.Where(bc => bc.BlogId == blog.BlogId).ToList();
                                         }
@@ -433,6 +433,9 @@
             </div>
             <div class="row">
                 <div class="col-md-5">
+                    <div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
+                        You can feel free to ask me anything or offer a full-time or part-time job request.
+                    </div>
                     <div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
                         <div class="colorlib-icon">
                             <i class="icon-globe2"></i>
@@ -490,5 +493,17 @@
 </div><!-- end:colorlib-main -->
 
 @section Scripts{
+    @*<script>
+            function changeCSS(cssFile, cssLinkIndex) {
 
+                var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+
+                var newlink = document.createElement("link");
+                newlink.setAttribute("rel", "stylesheet");
+                newlink.setAttribute("type", "text/css");
+                newlink.setAttribute("href", cssFile);
+
+                document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+            }
+        </script>*@
 }
