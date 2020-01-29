@@ -11,7 +11,6 @@ namespace PersonalWebApp.Models
         public Guid Id { get; set; }
         [Required]
         public string SiteColor { get; set; }
-        [Required]
         public string SiteLogoPath { get; set; }
         [Required]
         public string SiteOwnerJob { get; set; }

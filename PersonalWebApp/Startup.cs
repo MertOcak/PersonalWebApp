@@ -54,6 +54,7 @@ namespace PersonalWebApp
             services.AddTransient<IGenericRepository<Blog>, GenericRepository<Blog>>();
             services.AddTransient<IGenericRepository<ContactRequest>, GenericRepository<ContactRequest>>();
             services.AddTransient<IGenericRepository<General>, GenericRepository<General>>();
+            services.AddTransient<IGenericRepository<Page>, GenericRepository<Page>>();
 
             //services.AddScoped<IProjectRepository, SqlProjectRepository>();
             //services.AddScoped<ICategoryRepository, SqlCategoryRepository>();

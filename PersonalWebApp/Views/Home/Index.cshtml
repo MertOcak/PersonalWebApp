@@ -201,7 +201,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
-                    <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.</p>
+                    @Html.Raw(Model.Page.SkillContent)
                 </div>
                 @{
                     int evenOrOddCheck = 0;
@@ -435,10 +435,18 @@
                 <div class="col-md-5">
                     <div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
                         <div class="colorlib-icon">
+                            <i class="icon-globe2"></i>
+                        </div>
+                        <div class="colorlib-text">
+                            <p><a href="https://www.mertocak.work">www.mertocak.work</a></p>
+                        </div>
+                    </div>
+                    <div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
+                        <div class="colorlib-icon">
                             <i class="icon-globe-outline"></i>
                         </div>
                         <div class="colorlib-text">
-                            <p><a href="#">info@domain.com</a></p>
+                            <p><a href="mailto:@(Model.General.SiteOwnerEmail)">@Model.General.SiteOwnerEmail</a></p>
                         </div>
                     </div>
 
@@ -447,16 +455,7 @@
                             <i class="icon-map"></i>
                         </div>
                         <div class="colorlib-text">
-                            <p>198 West 21th Street, Suite 721 New York NY 10016</p>
-                        </div>
-                    </div>
-
-                    <div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
-                        <div class="colorlib-icon">
-                            <i class="icon-phone"></i>
-                        </div>
-                        <div class="colorlib-text">
-                            <p><a href="tel://">+123 456 7890</a></p>
+                            <p>@Model.General.SiteOwnerAddress</p>
                         </div>
                     </div>
                 </div>

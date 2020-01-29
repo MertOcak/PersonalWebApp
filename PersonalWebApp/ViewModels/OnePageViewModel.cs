@@ -18,5 +18,7 @@ namespace PersonalWebApp.ViewModels
         public List<Blog> BlogCategories { get; set; }
         public IEnumerable<AboutSkill> AboutSkills { get; set; }
         public ContactRequest ContactRequest { get; set; }
+        public General General { get; set; }
+        public Page Page { get; set; }
     }
 }

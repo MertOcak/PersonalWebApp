@@ -23,9 +23,11 @@ namespace PersonalWebApp.Controllers
         private readonly IGenericRepository<Blog> blogRepository;
         private readonly IGenericRepository<AboutSkill> aboutSkillRepository;
         private readonly IGenericRepository<ContactRequest> contactRequestRepository;
+        private readonly IGenericRepository<General> generalRepository;
+        private readonly IGenericRepository<Page> pageRepository;
         private readonly List<Blog> blogCategories;
 
-        public HomeController(AppDbContext context, DbContextOptions<AppDbContext> contextOptions, IGenericRepository<Project> projectRepository, IGenericRepository<About> aboutRepository, IGenericRepository<Category> categoryRepository, IGenericRepository<Education> educationRepository, IGenericRepository<Skill> skillRepository, IGenericRepository<Experience> experienceRepository, IGenericRepository<Blog> blogRepository, IGenericRepository<AboutSkill> aboutSkillRepository, IGenericRepository<ContactRequest> contactRequestRepository) 
+        public HomeController(AppDbContext context, DbContextOptions<AppDbContext> contextOptions, IGenericRepository<Project> projectRepository, IGenericRepository<About> aboutRepository, IGenericRepository<Category> categoryRepository, IGenericRepository<Education> educationRepository, IGenericRepository<Skill> skillRepository, IGenericRepository<Experience> experienceRepository, IGenericRepository<Blog> blogRepository, IGenericRepository<AboutSkill> aboutSkillRepository, IGenericRepository<ContactRequest> contactRequestRepository, IGenericRepository<General> generalRepository,IGenericRepository<Page> pageRepository) 
         {
             this.context = context;
             this.contextOptions = contextOptions;
@@ -38,6 +40,8 @@ namespace PersonalWebApp.Controllers
             this.blogRepository = blogRepository;
             this.aboutSkillRepository = aboutSkillRepository;
             this.contactRequestRepository = contactRequestRepository;
+            this.generalRepository = generalRepository;
+            this.pageRepository = pageRepository;
             using (AppDbContext a = new AppDbContext(contextOptions))
             {
                 var blogCategories = a.Blogs.Include(blog => blog.BlogCategories).ThenInclude(blog=>blog.Category).ToList();
@@ -57,6 +61,8 @@ namespace PersonalWebApp.Controllers
                 Blogs = blogRepository.GetAll(),
                 BlogCategories = blogCategories,
                 AboutSkills = aboutSkillRepository.GetAll(),
+                General = generalRepository.GetById(Guid.Parse("fa02f728-016e-44cb-83d8-9dd157d5848b")),
+                Page = pageRepository.GetById(Guid.Parse("76ec251b-b7b8-4be6-84df-efb922306ba8"))
                 //ContactRequest = new ContactRequest()
             };
 

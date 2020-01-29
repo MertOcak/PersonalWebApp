@@ -9,6 +9,7 @@ namespace PersonalWebApp.Models
     public class Skill
     {
         public Guid Id { get; set; }
+
         [Required]
         public string Name { get; set; }
         [Required]

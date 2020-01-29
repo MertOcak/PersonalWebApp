@@ -331,7 +331,7 @@ body {
   font-size: 14px;
   line-height: 1.42857;
   color: #333333;
-  background-color: #fff;
+  background-color: #000;
 }
 
 input,
@@ -2073,7 +2073,7 @@ output {
   padding: 10px 20px;
   font-size: 14px;
   line-height: 1.42857;
-  color: #555555;
+  color: #48cd04;
   background-color: #fff;
   background-image: none;
   border: 1px solid #ccc;
@@ -2676,7 +2676,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
   border-color: #122b40;
 }
 .btn-primary:hover {
-  color: #fff;
+  color: #48cd04;
   background-color: #286090;
   border-color: #204d74;
 }
@@ -4879,7 +4879,7 @@ button.list-group-item-danger.active:focus {
 
 .panel {
   margin-bottom: 20px;
-  background-color: #fff;
+  /* background-color: #fff; */
   border: 1px solid transparent;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);

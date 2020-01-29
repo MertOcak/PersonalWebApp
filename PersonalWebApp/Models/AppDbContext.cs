@@ -27,6 +27,7 @@ namespace PersonalWebApp.Models
         public DbSet<ContactRequest> ContactRequests { get; set; }
         public DbSet<General> Generals { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<Page> Pages { get; set; }
         public DbSet<ProjectImages> ProjectImages { get; set; }
         public DbSet<BlogImages> BlogImages { get; set; }
 

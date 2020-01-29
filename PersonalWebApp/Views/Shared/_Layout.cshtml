@@ -3,22 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@ViewBag.Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content="" />
-    <meta property="og:image" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:description" content="" />
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
+   @await Component.InvokeAsync("Meta")
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" href="favicon.ico">
@@ -58,11 +43,7 @@
         <div class="container-wrap">
             <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
             <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
-                <div class="text-center">
-                    <div class="author-img" style="background-image: url(images/about.jpg);"></div>
-                    <h1 id="colorlib-logo"><a href="index.html">Mert Ocak</a></h1>
-                    <span class="position"><a href="#">Computer Engineer</a> in Turkey</span>
-                </div>
+               @await Component.InvokeAsync("VCard")
                 <nav id="colorlib-main-menu" role="navigation" class="navbar">
                     <div id="navbar" class="collapse">
                         <ul>

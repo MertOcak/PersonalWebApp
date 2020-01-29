@@ -55,6 +55,8 @@
     <Compile Remove="Migrations\20200119051651_ChangeProjectAndCategoryModelsIdToGuidStep1.Designer.cs" />
     <Compile Remove="Migrations\20200119052024_ChangeProjectAndCategoryModelsIdToGuidStep1.cs" />
     <Compile Remove="Migrations\20200119052024_ChangeProjectAndCategoryModelsIdToGuidStep1.Designer.cs" />
+    <Compile Remove="Migrations\20200129192542_AddedContentPropertyToSkillModel.cs" />
+    <Compile Remove="Migrations\20200129192542_AddedContentPropertyToSkillModel.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -67,6 +69,7 @@
   <ItemGroup>
     <Folder Include="Areas\Panel\Utilities\" />
     <Folder Include="wwwroot\userdata\blogs\" />
+    <Folder Include="wwwroot\userdata\general\" />
   </ItemGroup>
 
   <ItemGroup>

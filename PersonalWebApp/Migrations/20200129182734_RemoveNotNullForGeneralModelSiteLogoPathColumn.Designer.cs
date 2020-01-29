@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonalWebApp.Models;
 
 namespace PersonalWebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200129182734_RemoveNotNullForGeneralModelSiteLogoPathColumn")]
+    partial class RemoveNotNullForGeneralModelSiteLogoPathColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -388,18 +390,6 @@ namespace PersonalWebApp.Migrations
                     b.HasKey("ImageId");
 
                     b.ToTable("Images");
-                });
-
-            modelBuilder.Entity("PersonalWebApp.Models.Page", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("SkillContent");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Pages");
                 });
 
             modelBuilder.Entity("PersonalWebApp.Models.Project", b =>
